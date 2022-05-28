@@ -113,7 +113,7 @@ double RecommenderSystem::norm (const std::vector<double> &vec)
   double sum = 0;
   for (double i: vec)
     {
-      sum += i;
+      sum += i*i;
     }
   return std::sqrt (sum);
 }
