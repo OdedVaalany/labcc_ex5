@@ -45,12 +45,13 @@ int Movie::get_year () const
 
 bool operator< (const Movie &lhs, const Movie &rhs)
 {
-  return lhs._year < rhs._year
-         or (lhs._year == rhs._year & lhs._name < rhs._name);
+  return lhs.get_year () < rhs.get_year ()
+         || (lhs.get_year () == rhs.get_year ()
+             && lhs.get_name () < rhs.get_name ());
 }
 
-std::ostream & operator<<(std::ostream& os,const Movie& movie)
+std::ostream &operator<< (std::ostream &os, const Movie &movie)
 {
-  os << movie.get_name() << " (" << movie.get_year() << ")\n";
+  os << movie.get_name () << " (" << movie.get_year () << ")\n";
   return os;
 }

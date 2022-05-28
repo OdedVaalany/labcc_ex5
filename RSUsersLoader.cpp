@@ -3,10 +3,10 @@
 
 
 #include "RSUsersLoader.h"
+#define BUCKETS_NUMBER 11
 
-
-std::vector<RSUser>
-RSUsersLoader::create_users_from_file (const std::string &users_file_path, RS_ptr rs) noexcept (false)
+std::vector<RSUser> RSUsersLoader::create_users_from_file
+    (const std::string &users_file_path, RS_ptr rs) noexcept (false)
 {
   std::vector<RSUser> users;
   std::vector<std::string> movies_headers;
@@ -15,7 +15,7 @@ RSUsersLoader::create_users_from_file (const std::string &users_file_path, RS_pt
     {
       throw std::runtime_error ("Not the right path");
     }
-  auto user_rank =  rank_map(11, sp_movie_hash, sp_movie_equal );
+  auto user_rank = rank_map (BUCKETS_NUMBER, sp_movie_hash, sp_movie_equal);
   std::string line, word, name;
   std::istringstream iss (line);
   if (std::getline (users_file, line))
@@ -44,7 +44,7 @@ RSUsersLoader::create_users_from_file (const std::string &users_file_path, RS_pt
             }
           i++;
         }
-      users.push_back (RSUser (name,user_rank,rs));
+      users.push_back (RSUser (name, user_rank, rs));
     }
   users_file.close ();
   return users;

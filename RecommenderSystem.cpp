@@ -24,7 +24,7 @@ sp_movie RecommenderSystem::recommend_by_content (const RSUser &user)
   std::vector<double> pre_vec = build_preference_vector (user);
   sp_movie best_movie = nullptr;
   double best_movie_score = 0;
-  for (const auto i: _movies_list)
+  for (const auto &i: _movies_list)
     {
       if (user.get_ranks ().find (i.first) == user.get_ranks ().end ())
         {
@@ -44,7 +44,7 @@ sp_movie RecommenderSystem::recommend_by_cf (const RSUser &user, int k)
 {
   double max_score = 0;
   sp_movie max_socred_movie;
-  for (const auto i: _movies_list)
+  for (const auto &i: _movies_list)
     {
       if (user.get_ranks ().find (i.first) == user.get_ranks ().end ())
         {
@@ -61,7 +61,7 @@ sp_movie RecommenderSystem::recommend_by_cf (const RSUser &user, int k)
 
 sp_movie RecommenderSystem::get_movie (const std::string &name, int year) const
 {
-  for (const auto i: _movies_list)
+  for (const auto &i: _movies_list)
     {
       if (i.first->get_name () == name && i.first->get_year () == year)
         {
@@ -88,7 +88,8 @@ double RecommenderSystem::predict_movie_score (const RSUser &user,
 
   for (const auto &i: user.get_ranks ())
     {
-      watched_k.emplace_back (std::pair<sp_movie, double> (i.first, similarity (movie, i.first)));
+      watched_k.emplace_back (std::pair<sp_movie, double>
+                                  (i.first, similarity (movie, i.first)));
     }
   std::sort (watched_k.begin (), watched_k.end (), [] (auto &x, auto &y)
   { return x.second > y.second; });
@@ -114,7 +115,7 @@ double RecommenderSystem::norm (const std::vector<double> &vec)
     {
       sum += i;
     }
-  return sqrt (sum);
+  return std::sqrt (sum);
 }
 
 double RecommenderSystem::standard_product
@@ -141,7 +142,8 @@ std::vector<double> RecommenderSystem::get_features (const sp_movie &movie)
 }
 
 std::vector<double> RecommenderSystem::connect_vectors
-    (double alpha, const std::vector<double> &a, double beta, const std::vector<double> &b)
+    (double alpha, const std::vector<double> &a,
+     double beta, const std::vector<double> &b)
 {
   std::vector<double> vec;
   for (size_t i = 0; i < a.size (); ++i)

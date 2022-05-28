@@ -12,7 +12,7 @@ class RecommenderSystemLoader
 {
 
 private:
-  static bool is_valid_number(double &num) ;
+  static bool is_valid_number(const double& num) ;
 
 public:
     RecommenderSystemLoader() = delete;

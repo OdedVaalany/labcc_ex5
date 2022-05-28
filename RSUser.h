@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <algorithm>
 #include "Movie.h"
 
 class RecommenderSystem;

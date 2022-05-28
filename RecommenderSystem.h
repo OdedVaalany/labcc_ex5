@@ -5,6 +5,7 @@
 #include "RSUser.h"
 #include <map>
 #include <vector>
+#include <algorithm>
 
 class RecommenderSystem;
 
