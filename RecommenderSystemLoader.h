@@ -8,21 +8,20 @@
 #include <sstream>
 #include <cmath>
 
-class RecommenderSystemLoader
-{
+class RecommenderSystemLoader {
 
-private:
-  static bool is_valid_number(const double& num) ;
+ private:
+  static bool is_valid_number (const double &num);
 
-public:
-    RecommenderSystemLoader() = delete;
-    /**
-	 * loads movies by the given format for movies with their feature's score
-	 * @param movies_file_path a path to the file of the movies
-	 * @return shared pointer to a RecommenderSystem which was created with those movies
-	 */
-    static RS_ptr  create_rs_from_movies_file(const std::string& movies_file_path) noexcept(false);
+ public:
+  RecommenderSystemLoader () = delete;
+  /**
+   * loads movies by the given format for movies with their feature's score
+   * @param movies_file_path a path to the file of the movies
+   * @return shared pointer to a RecommenderSystem which was created with those movies
+   */
+  static RS_ptr create_rs_from_movies_file
+      (const std::string &movies_file_path) noexcept (false);
 };
 
-
-#endif RECOMMENDERSYSTEMLOADER_H
+#endif //RECOMMENDERSYSTEMLOADER_H

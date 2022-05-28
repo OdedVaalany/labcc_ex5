@@ -50,7 +50,8 @@ class Movie {
    * operator< for two movies
    * @param rhs: right hand side
    * @param lhs: left hand side
-   * @return returns true if (rhs.year) < lhs.year or (rhs.year == lhs.year & rhs.name == lhs.name) else return false
+   * @return returns true if (rhs.year) < lhs.year or
+   * (rhs.year == lhs.year & rhs.name == lhs.name) else return false
    */
   friend bool operator< (const Movie &lhs, const Movie &rhs);
   /**
@@ -58,9 +59,9 @@ class Movie {
    * @param os ostream to output info with
    * @param movie movie to output
    */
-  friend std::ostream & operator<<(std::ostream& os,const Movie& movie);
+  friend std::ostream &operator<< (std::ostream &os, const Movie &movie);
 
-  friend std::size_t sp_movie_hash(const sp_movie& movie);
+  friend std::size_t sp_movie_hash (const sp_movie &movie);
 };
 
-#endif //MOVIE_H
+#endif MOVIE_H

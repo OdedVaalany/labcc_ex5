@@ -93,7 +93,7 @@ double RecommenderSystem::predict_movie_score (const RSUser &user,
     }
   std::sort (watched_k.begin (), watched_k.end (), [] (auto &x, auto &y)
   { return x.second > y.second; });
-  for (size_t i = 0; i < k; ++i)
+  for (int i = 0; i < k; ++i)
     {
       sum1 += watched_k.at (i).second
               * user.get_ranks ().find (watched_k.at (i).first)->second;

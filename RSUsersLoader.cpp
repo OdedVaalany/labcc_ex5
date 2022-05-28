@@ -36,7 +36,8 @@ std::vector<RSUser> RSUsersLoader::create_users_from_file
           if (word != "NA")
             {
               size_t sep_loc = movies_headers.at (i).find ("-");
-              std::string movie_name = movies_headers.at (i).substr (0, sep_loc);
+              std::string movie_name = movies_headers.at (i).substr
+                  (0, sep_loc);
               int movie_year = std::stoi (movies_headers.at (i).substr (
                   sep_loc + 1, movies_headers.at (i).size ()));
               sp_movie movie = rs->get_movie (movie_name, movie_year);

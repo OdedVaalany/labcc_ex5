@@ -6,6 +6,7 @@
 #include <map>
 #include <vector>
 #include <algorithm>
+#include <cmath>
 
 class RecommenderSystem;
 
@@ -18,12 +19,15 @@ class RecommenderSystem {
     return first < sec;
   }
   double similarity (const sp_movie &a, const sp_movie &b);
-  static double norm(const std::vector<double>& vec);
-  double standard_product(const std::vector<double>& vec1 , const std::vector<double>& vec2);
-  std::vector<double> connect_vectors(double alpha,const std::vector<double>&a,double beta,const std::vector<double>& b);
-  std::vector<double> get_features(const sp_movie &movie);
-  std::map<sp_movie,std::vector<double>,equal_func> _movies_list;
-  std::vector<double> build_preference_vector(const RSUser &user);
+  static double norm (const std::vector<double> &vec);
+  double standard_product (const std::vector<double> &vec1,
+                           const std::vector<double> &vec2);
+  std::vector<double> connect_vectors
+      (double alpha, const std::vector<double> &a, double beta,
+       const std::vector<double> &b);
+  std::vector<double> get_features (const sp_movie &movie);
+  std::map<sp_movie, std::vector<double>, equal_func> _movies_list;
+  std::vector<double> build_preference_vector (const RSUser &user);
  public:
 
   explicit RecommenderSystem ();
