@@ -64,4 +64,4 @@ class Movie {
   friend std::size_t sp_movie_hash (const sp_movie &movie);
 };
 
-#endif MOVIE_H
+#endif //MOVIE_H

@@ -15,7 +15,6 @@ std::vector<RSUser> RSUsersLoader::create_users_from_file
     {
       throw std::runtime_error ("Not the right path");
     }
-  auto user_rank = rank_map (BUCKETS_NUMBER, sp_movie_hash, sp_movie_equal);
   std::string line, word, name;
   std::istringstream iss (line);
   if (std::getline (users_file, line))
@@ -28,6 +27,8 @@ std::vector<RSUser> RSUsersLoader::create_users_from_file
     }
   while (std::getline (users_file, line))
     {
+      auto user_rank = rank_map (BUCKETS_NUMBER, sp_movie_hash,
+                                 sp_movie_equal);
       iss = std::istringstream (line);
       iss >> name;
       int i = 0;

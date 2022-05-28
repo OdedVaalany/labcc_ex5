@@ -86,7 +86,7 @@ double RecommenderSystem::predict_movie_score (const RSUser &user,
   std::vector<std::pair<sp_movie, double>> watched_k;
   double sum1 = 0, sum2 = 0;
 
-  for (const auto &i: user.get_ranks ())
+  for (const auto i: user.get_ranks ())
     {
       watched_k.emplace_back (std::pair<sp_movie, double>
                                   (i.first, similarity (movie, i.first)));

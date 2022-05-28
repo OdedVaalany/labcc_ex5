@@ -38,17 +38,11 @@ sp_movie RSUser::get_recommendation_by_cf (int k) const
   return _user_RS->recommend_by_cf (*this, k);
 }
 
-double
-RSUser::get_prediction_score_for_movie (const std::string &name, int year, int k) const
+double RSUser::get_prediction_score_for_movie
+    (const std::string &name, int year, int k) const
 {
-  for (auto i: _user_ranking_map)
-    {
-      if (i.first->get_name () == name && i.first->get_year () == year)
-        {
-          _user_RS->predict_movie_score (*this, i.first, k);
-        }
-    }
-  return 0.0;
+  sp_movie movie = _user_RS->get_movie (name, year);
+  return _user_RS->predict_movie_score (*this, movie, k);
 }
 
 sp_movie RSUser::get_recommendation_by_content () const
@@ -64,8 +58,9 @@ std::ostream &operator<< (std::ostream &os, const RSUser &user)
     {
       watched.push_back (i.first);
     }
-  std::sort (watched.begin (), watched.end (), [] (const sp_movie &a, const sp_movie &b)
-  { return *a < *b; });
+  std::sort (watched.begin (), watched.end (),
+             [] (const sp_movie &a, const sp_movie &b)
+             { return *a < *b; });
   for (const auto i: watched)
     {
       os << *i;
