@@ -164,19 +164,14 @@ RecommenderSystem::build_preference_vector (const RSUser &user)
       avg_counter++;
     }
   avg = avg / avg_counter;
-  auto ranks_copy = user.get_ranks ();
-  for (auto i: ranks_copy)
-    {
-      i.second = i.second - avg;
-    }
   auto preference_vec =
-      connect_vectors (ranks_copy.begin ()->second,
-                       get_features (ranks_copy.begin ()->first),
-                       0, get_features (ranks_copy.begin ()->first));
-  for (auto i = ++ranks_copy.begin (); i != ranks_copy.end (); ++i)
+      connect_vectors (user.get_ranks().begin ()->second - avg,
+                       get_features (user.get_ranks().begin ()->first),
+                       0, get_features (user.get_ranks().begin ()->first));
+  for (auto i = ++user.get_ranks().begin (); i != user.get_ranks().end (); ++i)
     {
       preference_vec = connect_vectors
-          (1, preference_vec, i->second, get_features (i->first));
+          (1, preference_vec, i->second-avg, get_features (i->first));
     }
   return preference_vec;
 }

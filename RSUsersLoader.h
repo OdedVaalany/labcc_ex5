@@ -10,9 +10,10 @@
 #include <cmath>
 #include <unordered_map>
 #include "Movie.h"
+#include <stdexcept>
 class RSUsersLoader {
  private:
-
+  static bool is_valid_number (const double &num);
  public:
   RSUsersLoader () = delete;
   /**

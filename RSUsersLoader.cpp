@@ -4,6 +4,9 @@
 
 #include "RSUsersLoader.h"
 #define BUCKETS_NUMBER 11
+#define OUT_OF_RANGE_MSG "rating value is out of 1-10 range"
+#define UPPER_BOUND(args) args <= 10
+#define LOWER_BOUND(args) args >= 1
 
 std::vector<RSUser> RSUsersLoader::create_users_from_file
     (const std::string &users_file_path, RS_ptr rs) noexcept (false)
@@ -34,8 +37,12 @@ std::vector<RSUser> RSUsersLoader::create_users_from_file
       int i = 0;
       while (iss >> word)
         {
-          if (word != "NA")
+          if (word != "NA" )
             {
+              if(!is_valid_number (std::stod (word)))
+                {
+                  throw std::out_of_range(OUT_OF_RANGE_MSG);
+                }
               size_t sep_loc = movies_headers.at (i).find ("-");
               std::string movie_name = movies_headers.at (i).substr
                   (0, sep_loc);
@@ -50,5 +57,10 @@ std::vector<RSUser> RSUsersLoader::create_users_from_file
     }
   users_file.close ();
   return users;
+}
+
+bool RSUsersLoader::is_valid_number (const double &num)
+{
+  return UPPER_BOUND(num) && LOWER_BOUND(num);
 }
 

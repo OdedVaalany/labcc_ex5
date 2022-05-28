@@ -2,6 +2,7 @@
 // Created by עודד ועלני on 26/05/2022.
 //
 #include "RecommenderSystemLoader.h"
+#define OUT_OF_RANGE_MSG "feature value is out of range of 1-10"
 #define UPPER_BOUND(args) args <= 10
 #define LOWER_BOUND(args) args >= 1
 RS_ptr
@@ -31,7 +32,7 @@ RecommenderSystemLoader::create_rs_from_movies_file
           double value = std::stod (word);
           if (!is_valid_number (value))
             {
-              break;
+              throw std::out_of_range(OUT_OF_RANGE_MSG);
             }
           features_vec.push_back (std::stod (word));
         }
