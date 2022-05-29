@@ -38,15 +38,16 @@ class RSUser {
    * @param rate the user rate for this movie
    * @return true for success, false otherwise
    */
-  bool add_movie_to_rs (const std::string &name, int year,
+  void add_movie_to_rs (const std::string &name, int year,
                         const std::vector<double> &features,
                         double rate);
 
   /**
    * a getter for the ranks map
-   * @return const reference to rank_map
+   * @return reference to rank_map
    */
   const rank_map &get_ranks () const;
+  rank_map &get_ranks ();
   /**
    * returns a recommendation according to the movie's content
    * @return recommendation

@@ -20,17 +20,12 @@ std::string RSUser::get_name () const
   return _user_name;
 }
 
-bool RSUser::add_movie_to_rs
+void RSUser::add_movie_to_rs
     (const std::string &name, int year,
      const std::vector<double> &features, double rate)
 {
-  if(_user_RS->get_movie (name,year) != nullptr)
-    {
-      return false;
-    }
   sp_movie movie = _user_RS->add_movie (name, year, features);
   _user_ranking_map.insert ({movie, rate});
-  return true;
 }
 
 const rank_map &RSUser::get_ranks () const
@@ -58,15 +53,16 @@ sp_movie RSUser::get_recommendation_by_content () const
 std::ostream &operator<< (std::ostream &os, const RSUser &user)
 {
   os << "name: " << user.get_name () << std::endl;
-  std::vector<sp_movie> watched;
-  for (const auto &i: user.get_ranks ())
+  std::vector<sp_movie> list;
+  for (const auto &i: user._user_RS->_movies_list)
     {
-      watched.push_back (i.first);
+      if (user.get_ranks ().find (i.first) == user.get_ranks ().end ())
+        {
+          list.push_back (i.first);
+        }
     }
-  std::sort (watched.begin (), watched.end (),
-             [] (const sp_movie &a, const sp_movie &b)
-             { return *a < *b; });
-  for (const auto &i: watched)
+  std::sort (list.begin (), list.end (), sp_movie_equal);
+  for (const auto &i: list)
     {
       os << *i;
     }

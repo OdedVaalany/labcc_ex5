@@ -26,10 +26,9 @@ class RecommenderSystem {
       (double alpha, const std::vector<double> &a, double beta,
        const std::vector<double> &b);
   std::vector<double> get_features (const sp_movie &movie);
-  std::map<sp_movie, std::vector<double>, equal_func> _movies_list;
   std::vector<double> build_preference_vector (const RSUser &user);
  public:
-
+  std::map<sp_movie, std::vector<double>, equal_func> _movies_list;
   explicit RecommenderSystem ();
   /**
    * adds a new movie to the system
