@@ -86,7 +86,7 @@ double RecommenderSystem::predict_movie_score (const RSUser &user,
   std::vector<std::pair<sp_movie, double>> watched_k;
   double sum1 = 0, sum2 = 0;
 
-  for (const auto i: user.get_ranks ())
+  for (const auto &i: user.get_ranks ())
     {
       watched_k.emplace_back (std::pair<sp_movie, double>
                                   (i.first, similarity (movie, i.first)));
@@ -131,7 +131,7 @@ double RecommenderSystem::standard_product
 
 std::vector<double> RecommenderSystem::get_features (const sp_movie &movie)
 {
-  for (const auto i: _movies_list)
+  for (const auto &i: _movies_list)
     {
       if (movie == i.first)
         {
@@ -158,7 +158,7 @@ RecommenderSystem::build_preference_vector (const RSUser &user)
 {
   double avg = 0;
   int avg_counter = 0;
-  for (const auto i: user.get_ranks ())
+  for (const auto &i: user.get_ranks ())
     {
       avg += i.second;
       avg_counter++;
@@ -168,7 +168,7 @@ RecommenderSystem::build_preference_vector (const RSUser &user)
       connect_vectors (user.get_ranks().begin ()->second - avg,
                        get_features (user.get_ranks().begin ()->first),
                        0, get_features (user.get_ranks().begin ()->first));
-  for (auto i = ++user.get_ranks().begin (); i != user.get_ranks().end (); ++i)
+  for (auto &i = ++user.get_ranks().begin (); i != user.get_ranks().end (); ++i)
     {
       preference_vec = connect_vectors
           (1, preference_vec, i->second-avg, get_features (i->first));

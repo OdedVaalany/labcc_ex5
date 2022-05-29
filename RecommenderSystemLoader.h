@@ -12,6 +12,10 @@
 class RecommenderSystemLoader {
 
  private:
+  /**
+   * check if the given number is in the valid range
+   * @param num reference to double number
+   * */
   static bool is_valid_number (const double &num);
 
  public:

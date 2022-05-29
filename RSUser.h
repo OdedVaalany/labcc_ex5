@@ -38,7 +38,7 @@ class RSUser {
    * @param rate the user rate for this movie
    * @return true for success, false otherwise
    */
-  void add_movie_to_rs (const std::string &name, int year,
+  bool add_movie_to_rs (const std::string &name, int year,
                         const std::vector<double> &features,
                         double rate);
 

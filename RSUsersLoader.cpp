@@ -43,7 +43,7 @@ std::vector<RSUser> RSUsersLoader::create_users_from_file
                 {
                   throw std::out_of_range(OUT_OF_RANGE_MSG);
                 }
-              size_t sep_loc = movies_headers.at (i).find ("-");
+              size_t sep_loc = movies_headers.at (i).find ('-');
               std::string movie_name = movies_headers.at (i).substr
                   (0, sep_loc);
               int movie_year = std::stoi (movies_headers.at (i).substr (
@@ -53,7 +53,7 @@ std::vector<RSUser> RSUsersLoader::create_users_from_file
             }
           i++;
         }
-      users.push_back (RSUser (name, user_rank, rs));
+      users.emplace_back(name, user_rank, rs);
     }
   users_file.close ();
   return users;

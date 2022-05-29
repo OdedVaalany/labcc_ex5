@@ -77,6 +77,12 @@ class RecommenderSystem {
    */
   sp_movie get_movie (const std::string &name, int year) const;
 
+  /**
+   * overload of << operator
+   * @param os ostream reference
+   * @param RS recommender system reference
+   * @return ostream
+   * */
   friend std::ostream &
   operator<< (std::ostream &os, const RecommenderSystem &RS);
 
