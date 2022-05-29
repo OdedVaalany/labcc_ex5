@@ -16,6 +16,7 @@ std::vector<RSUser> RSUsersLoader::create_users_from_file
   std::ifstream users_file (users_file_path, std::ios::in);
   if (!users_file.is_open ())
     {
+      users_file.close();
       throw std::runtime_error ("Not the right path");
     }
   std::string line, word, name;
@@ -41,6 +42,7 @@ std::vector<RSUser> RSUsersLoader::create_users_from_file
             {
               if(!is_valid_number (std::stod (word)))
                 {
+                  users_file.close();
                   throw std::out_of_range(OUT_OF_RANGE_MSG);
                 }
               size_t sep_loc = movies_headers.at (i).find ('-');

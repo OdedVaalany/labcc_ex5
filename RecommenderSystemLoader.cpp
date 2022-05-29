@@ -15,6 +15,7 @@ RecommenderSystemLoader::create_rs_from_movies_file
   std::vector<double> features_vec;
   if (!users_file.is_open ())
     {
+      users_file.close();
       throw std::runtime_error ("Not the right path");
     }
   std::string line, word, movie_name, movie_year;

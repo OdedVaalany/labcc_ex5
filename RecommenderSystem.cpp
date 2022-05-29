@@ -113,7 +113,7 @@ double RecommenderSystem::norm (const std::vector<double> &vec)
   double sum = 0;
   for (double i: vec)
     {
-      sum += i*i;
+      sum += i * i;
     }
   return std::sqrt (sum);
 }
@@ -165,13 +165,14 @@ RecommenderSystem::build_preference_vector (const RSUser &user)
     }
   avg = avg / avg_counter;
   auto preference_vec =
-      connect_vectors (user.get_ranks().begin ()->second - avg,
-                       get_features (user.get_ranks().begin ()->first),
-                       0, get_features (user.get_ranks().begin ()->first));
-  for (auto &i = ++user.get_ranks().begin (); i != user.get_ranks().end (); ++i)
+      connect_vectors (user.get_ranks ().begin ()->second - avg,
+                       get_features (user.get_ranks ().begin ()->first),
+                       0, get_features (user.get_ranks ().begin ()->first));
+  for (auto &i = ++user.get_ranks ().begin ();
+       i != user.get_ranks ().end (); ++i)
     {
       preference_vec = connect_vectors
-          (1, preference_vec, i->second-avg, get_features (i->first));
+          (1, preference_vec, i->second - avg, get_features (i->first));
     }
   return preference_vec;
 }
