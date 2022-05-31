@@ -25,7 +25,7 @@ class RSUser {
    * Constructor for the class
    */
   RSUser () = default;
-  RSUser (std::string &user_name, rank_map ranking, RS_ptr &user_rs);
+  RSUser (std::string &user_name, rank_map ranking, RS_ptr user_rs);
   /**
    * a getter for the user's name
    * @return the username
