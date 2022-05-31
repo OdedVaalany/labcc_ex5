@@ -8,12 +8,11 @@
 #include <utility>
 #include "RecommenderSystem.h"
 
-
-RSUser::RSUser (std::string &user_name, rank_map ranking, RS_ptr& user_rs)
+RSUser::RSUser (std::string &user_name, rank_map ranking, RS_ptr & user_rs)
 {
   _user_name = user_name;
   _user_ranking_map = std::move (ranking);
-  _user_RS = std::make_unique<RecommenderSystem>(*user_rs);
+  _user_RS = user_rs.get ();
 }
 
 std::string RSUser::get_name () const

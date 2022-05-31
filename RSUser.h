@@ -19,13 +19,13 @@ class RSUser {
  private:
   std::string _user_name;
   rank_map _user_ranking_map;
-  RS_ptr _user_RS;
+  RecommenderSystem *_user_RS;
  public:
   /**
    * Constructor for the class
    */
   RSUser () = default;
-  RSUser (std::string &user_name, rank_map ranking, RS_ptr &_user_rs);
+  RSUser (std::string &user_name, rank_map ranking, RS_ptr &user_rs);
   /**
    * a getter for the user's name
    * @return the username
