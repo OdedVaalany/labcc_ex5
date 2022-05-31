@@ -10,7 +10,7 @@
 
 class RecommenderSystem;
 
-typedef std::unique_ptr<RecommenderSystem> RS_ptr;
+typedef std::shared_ptr<RecommenderSystem> RS_ptr;
 
 class RecommenderSystem {
  private:

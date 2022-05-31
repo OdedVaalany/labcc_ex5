@@ -13,7 +13,7 @@
 
 class RecommenderSystem;
 typedef std::unordered_map<sp_movie, double, hash_func, equal_func> rank_map;
-typedef std::unique_ptr<RecommenderSystem> RS_ptr;
+typedef std::shared_ptr<RecommenderSystem> RS_ptr;
 
 class RSUser {
  private:

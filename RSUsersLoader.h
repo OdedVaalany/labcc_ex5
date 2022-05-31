@@ -29,7 +29,7 @@ class RSUsersLoader {
    * @return vector of the users created according to the file
    */
   static std::vector<RSUser> create_users_from_file
-      (const std::string &users_file_path, RS_ptr& rs) noexcept (false);
+      (const std::string &users_file_path, RS_ptr rs) noexcept (false);
 
 };
 
