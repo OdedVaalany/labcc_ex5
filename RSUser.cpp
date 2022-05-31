@@ -53,19 +53,7 @@ sp_movie RSUser::get_recommendation_by_content () const
 std::ostream &operator<< (std::ostream &os, const RSUser &user)
 {
   os << "name: " << user.get_name () << std::endl;
-  std::vector<sp_movie> list;
-  for (const auto &i: user._user_RS->_movies_list)
-    {
-      if (user.get_ranks ().find (i.first) == user.get_ranks ().end ())
-        {
-          list.push_back (i.first);
-        }
-    }
-  std::sort (list.begin (), list.end (), sp_movie_equal);
-  for (const auto &i: list)
-    {
-      os << *i;
-    }
+  os << *user._user_RS;
   return os;
 }
 // implement your cpp code here
