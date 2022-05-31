@@ -13,7 +13,7 @@
 
 class RecommenderSystem;
 typedef std::unordered_map<sp_movie, double, hash_func, equal_func> rank_map;
-typedef std::shared_ptr<RecommenderSystem> RS_ptr;
+typedef std::unique_ptr<RecommenderSystem> RS_ptr;
 
 class RSUser {
  private:
@@ -25,7 +25,7 @@ class RSUser {
    * Constructor for the class
    */
   RSUser () = default;
-  RSUser (std::string &user_name, rank_map ranking, RS_ptr _user_rs);
+  RSUser (std::string &user_name, rank_map ranking, RS_ptr &_user_rs);
   /**
    * a getter for the user's name
    * @return the username

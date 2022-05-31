@@ -9,7 +9,7 @@
 #define LOWER_BOUND(args) args >= 1
 
 std::vector<RSUser> RSUsersLoader::create_users_from_file
-    (const std::string &users_file_path, RS_ptr rs) noexcept (false)
+    (const std::string &users_file_path, RS_ptr& rs) noexcept (false)
 {
   std::vector<RSUser> users;
   std::vector<std::string> movies_headers;

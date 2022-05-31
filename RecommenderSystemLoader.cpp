@@ -9,8 +9,8 @@ RS_ptr
 RecommenderSystemLoader::create_rs_from_movies_file
     (const std::string &movies_file_path) noexcept (false)
 {
-  std::shared_ptr<RecommenderSystem> rs =
-      std::make_shared<RecommenderSystem> (RecommenderSystem ());
+  std::unique_ptr<RecommenderSystem> rs =
+      std::make_unique<RecommenderSystem> (RecommenderSystem ());
   std::ifstream users_file (movies_file_path, std::ios::in);
   std::vector<double> features_vec;
   if (!users_file.is_open ())
